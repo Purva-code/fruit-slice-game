@@ -53,6 +53,23 @@ $(function(){
         //send new fruit
         setTimeout(startAction, 600);
     });
+$("#fruit1").click(function(){
+       score++;
+        $("#scorevalue").html(score); //update score
+        $('#fruit1').css('cursor', 'crosshair');
+//        document.getElementById("slicesound").play();
+        //or
+        $("#slicesound")[0].play(); //play sound
+        
+        //stop fruit
+        clearInterval(action);
+        
+        //hidefruit
+        $("#fruit1").hide("explode",500); //slice fruit
+        
+        //send new fruit
+        setTimeout(startAction, 600);
+    });
 
 
 function addHearts(){
