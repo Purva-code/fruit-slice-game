@@ -1,0 +1,485 @@
+html{
+    height: 100%;
+    background: radial-gradient(circle, white, grey);
+    background: -webkit-radial-gradient(circle, white, grey);
+    background: -o-radial-gradient(circle, white, grey);
+    background: -moz-radial-gradient(circle, white, grey);
+}
+
+#container{
+    position: relative;
+    background-color: #9DD2EA;
+    height: 600px;
+    width: 750px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    box-shadow: 0px 4px 0px 0px #009DE4;
+/*    box-shadow: [horizontal offset][vertical offset][blur radius][optional spread radius][color]*/
+    -moz-box-shadow: 0px 4px 0px 0px #009DE4;
+    -webkit-box-shadow: 0px 4px 0px 0px #009DE4;
+/*    position: relative;*/
+}
+
+#score{
+    background-color: #F1FF92;
+    color: #888E5F;
+    padding: 10px;
+    float: right;
+    box-shadow: 0px 4px #9DA853;
+    -moz-box-shadow: 0px 4px #9DA853;
+    -webkit-box-shadow: 0px 4px #9DA853;
+    font-size: 20px;
+    
+}
+
+#clear{
+    clear: both;
+}
+
+#correct{
+    position: absolute;
+    left: 280px;
+    background-color: #42E252;
+    color: white;
+    padding: 11px;
+    display: none;
+    top:20px;
+}
+
+#wrong{
+    position: absolute;
+    left: 280px;
+    background-color: #DE401A;
+    color: white;
+    padding: 11px;
+    display: none;
+    top:20px;
+}
+
+#question{
+    width: 650px;
+    height: 400px;
+    margin: 10px auto 10px;
+/*    border: 2px solid black;*/
+    background-color: white;
+    box-shadow: 0px 4px #535AA8;
+    -moz-box-shadow: 0px 4px #535AA8;
+    -webkit-box-shadow: 0px 4px #535AA8;
+    font-size: 100px;
+    text-align: center;
+    font-family: cursive, sans-serif;
+    color: black;
+    position: relative;
+    overflow: hidden;
+}
+
+#instruction{
+    width: 500px;
+    height: 50px;
+    background-color: #B481D9;
+    margin: 10px auto;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    box-shadow: 0px 4px #8153a8;
+    -moz-box-shadow: 0px 4px #8153a8;
+    -webkit-box-shadow: 0px 4px #8153a8;
+}
+
+#choices{
+    width: 450px;
+    height: 100px;
+    margin: 30px auto;
+}
+
+.box{
+    width: 85px;
+    height: 85px;
+    background-color: white;
+    float: left;
+    margin-right: 36px;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0px 4px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 80px;
+    font-weight: bold;
+    font-size: 25px;
+    position: relative;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+/*    text-shadow: 2px 2px 4px #f3f390;*/
+}
+
+.box:hover, #startreset:hover{
+    /*background-color: #9C89F6;
+    color: white;
+    box-shadow: 0px 4px #6B54D3;*/
+}
+
+.box:active, #startreset:active{
+    box-shadow: 0px 0px #6B54D3;
+    top: 4px;
+    background-color: #9C89F6;
+    color: white;
+}
+
+#box4{
+    margin-right: 0;
+}
+
+#startreset{
+    width: 120px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.5);
+    margin: 0 auto;
+    font-size: 20px;
+    font-family: cursive;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0px 4px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+}
+
+#trialsleft{
+    width: 110px;
+    padding: 10px;
+    position: absolute;
+    top:20px;
+/*    left: 425px;*/
+/*    bottom: 30px;*/
+    background-color: #f5ea8e;
+    border-radius: 3px;
+    box-shadow: 0px 4px rgba(0,0,0,0.2);
+/*    visibility: hidden;*/
+    display: none;
+
+}
+
+#gameOver{
+    height: 200px;
+    width: 500px;
+    background: linear-gradient(lightpink, #ce644e);
+    background: -webkit-linear-gradient(lightpink, #ce644e);
+    background: -o-linear-gradient(lightpink, #ce644e);
+    background: -moz-linear-gradient(lightpink, #ce644e);
+    margin: 5px auto;
+    color: white;
+    font-size: 2.5em;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top:150px;
+    left:145px;
+    z-index: 2;
+    box-shadow: 2px 4px rgb(0,0,0,0.5);
+    border: 1px dashed white;
+    display: none;
+}
+.life{
+/*    width: 16px;*/
+/*    height: 16px;*/
+    margin: 0 5px;
+}
+.fruit{
+/*    width: 75px;*/
+    display: none;
+    position: absolute;
+}
+
+
+
+/*Super-Extra Small Devices*/
+@media(max-width:400px) and (min-width:350px){
+    #container{
+        height: 65vh;
+        width: 50vh;
+        padding: 10px;
+        
+    }
+    #question{
+        width:280px;
+        height:200px;
+        margin: 30px auto 10px;
+        font-size: 70px;
+    }
+    #score{
+        font-size:15px;
+    }
+    #instruction{
+        width: 280px;
+        font-size:15px;
+    }
+    #choices{
+    width: 250px;
+    height: 80px;
+    margin: 20px auto;
+}
+    .box{
+    width: 50px;
+    height:50px;
+    background-color: white;
+    float: left;
+    margin-right: 15px;
+    font-size: 20px;
+    line-height: 50px;
+    margin-bottom: 5px;
+}
+
+#box4{
+    margin-right: 0;
+}
+    #startreset{
+        font-family: cursive;
+        padding: 5px;
+        font-size: 15px;
+        width:100px;
+        line-height: 20px;
+        bottom: 0px;
+        
+    }
+    #timeremaining{
+    width: 150px;
+    padding: 5px;
+    position: absolute;
+/*    top:px;*/
+    left: 180px;
+    bottom: 10px;
+    font-size: 15px;
+}
+    #gameOver{
+        width:200px;
+        font-size: 30px;
+        left: 78px;
+        top: 100px;
+    }
+    #correct{
+        left:90px;
+    }
+    #wrong{
+        left:90px;
+    }
+    .fruit{
+        width: 70px;
+    }
+}
+
+
+@media(max-width:700px) and (min-width:450px){
+    #container{
+        height: 70vh;
+        width: 60vh;
+    }
+    #question{
+        width:320px;
+        height:250px;
+        margin: 40px auto 10px;
+        font-size: 80px;
+    }
+    #score{
+        font-size:15px;
+    }
+    #instruction{
+        width: 320px;
+        font-size:15px;
+    }
+    #choices{
+    width: 300px;
+    height: 80px;
+    margin: 20px auto;
+}
+    .box{
+    width: 60px;
+    height:60px;
+    background-color: white;
+    float: left;
+    margin-right: 15px;
+    line-height: 60px;
+}
+    #startreset{
+        font-family: cursive;
+        padding: 5px;
+        font-size: 15px;
+        width:100px;
+        line-height: 15px;
+        
+    }
+    #timeremaining{
+    width: 100px;
+    padding: 5px;
+    position: absolute;
+/*    top:px;*/
+    left: 260px;
+    bottom: 10px;
+    font-size: 12px;
+}
+    #gameOver{
+        width:200px;
+        font-size: 30px;
+        left: 135px;
+        top: 120px;
+    }
+    #correct{
+        left:90px;
+    }
+    #wrong{
+        left:90px;
+    }
+    .fruit{
+        width: 85px;
+    }
+
+}
+
+@media(max-width:449px) and (min-width:401px){
+    #container{
+        height:500px;
+        width:350px;
+    }
+    #question{
+        width:350px;
+        height:250px;
+        margin: 30px auto 10px;
+        font-size: 75px;
+    }
+    #score{
+        font-size:15px;
+    }
+    #instruction{
+        width: 350px;
+        font-size:15px;
+    }
+    #choices{
+    width: 300px;
+    height: 80px;
+    margin: 20px auto;
+}
+    .box{
+    width: 60px;
+    height:60px;
+    background-color: white;
+    float: left;
+    margin-right: 15px;
+    line-height: 56px;
+}
+    #startreset{
+        font-family: cursive;
+        padding: 5px;
+        font-size: 15px;
+        width:100px;
+        line-height: 30px;
+        
+    }
+    #timeremaining{
+    width: 120px;
+    padding: 5px;
+    position: absolute;
+/*    top:px;*/
+    left: 257px;
+    bottom: 15px;
+    font-size: 14px;
+}
+    #gameOver{
+        width:200px;
+        font-size: 30px;
+        left:93px;
+        top: 120px;
+    }
+    #correct{
+        left:90px;
+    }
+    #wrong{
+        left:90px;
+    }
+    .fruit{
+        width: 70px;
+    }
+
+}
+
+/*iPhone5/SE*/
+@media(max-width:349px){
+    #container{
+        height: 70vh;
+        width: 50vh;
+        padding: 10px;
+        
+    }
+    #question{
+        width:280px;
+        height:200px;
+        margin: 30px auto 10px;
+        font-size: 70px;
+    }
+    #score{
+        font-size:15px;
+    }
+    #instruction{
+        width: 280px;
+        font-size:15px;
+    }
+    #choices{
+    width: 250px;
+    height: 80px;
+    margin: 20px auto;
+}
+    .box{
+    width: 50px;
+    height:50px;
+    background-color: white;
+    float: left;
+    margin-right: 15px;
+    font-size: 20px;
+    line-height: 50px;
+    margin-bottom: 5px;
+}
+
+#box4{
+    margin-right: 0;
+}
+    #startreset{
+        font-family: cursive;
+        padding: 5px;
+        font-size: 15px;
+        width:100px;
+        line-height: 20px;
+        
+    }
+    #timeremaining{
+    width: 80px;
+    padding: 5px;
+    position: absolute;
+/*    top:px;*/
+    left: 215px;
+    bottom: 10px;
+    font-size: 12px;
+}
+    #gameOver{
+        width:200px;
+        font-size: 30px;
+        left: 50px;
+        top: 100px;
+    }
+    #correct{
+        left:90px;
+    }
+    #wrong{
+        left:90px;
+    }
+    .fruit{
+        width: 65px;
+    }
+}
